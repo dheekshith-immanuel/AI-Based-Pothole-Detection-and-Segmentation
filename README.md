@@ -2,78 +2,85 @@
 
 ## Project Overview
 
-Road potholes are a major challenge for transportation safety and infrastructure maintenance. Manual identification of potholes requires considerable time, effort, and resources, making it difficult to monitor large road networks effectively.
+AI-Based Pothole Detection and Segmentation is a deep learning-based computer vision system designed to detect and segment potholes from road images and video streams in real time.
 
-This project, **AI-Based Pothole Detection and Segmentation**, focuses on developing an intelligent system using Artificial Intelligence, Deep Learning, and Computer Vision techniques to automatically detect potholes from road images and video frames. The system uses semantic segmentation to identify the exact location and shape of potholes at the pixel level, enabling accurate road damage analysis.
+The project combines semantic segmentation and object detection techniques to provide pixel-level understanding of road conditions. It uses DeepLabV3 for scene-level segmentation and YOLOv8 segmentation for object-level detection, enabling accurate identification of potholes and other road elements.
 
-The main goal of this project is to provide an automated solution for road condition monitoring, reduce manual inspection efforts, and support timely maintenance decisions to improve road safety.
+The system processes raw video footage and converts it into meaningful visual information by highlighting damaged road areas, generating segmentation masks, and providing real-time performance analysis. This approach helps reduce manual road inspection efforts and supports efficient road safety monitoring.
 
-## Objectives
+---
 
-- Develop an AI-based system for automatic pothole detection.
-- Perform pixel-level segmentation of pothole regions.
-- Analyze road damage using deep learning techniques.
-- Reduce dependency on manual road inspection.
-- Support efficient road maintenance and monitoring.
+## Key Features
+
+- Real-time semantic segmentation using DeepLabV3-MobileNetV3.
+- Pothole detection and segmentation using YOLOv8 segmentation models.
+- Pixel-level identification of road damage areas.
+- Real-time video and webcam input support.
+- Automatic generation of annotated output videos.
+- Live monitoring of FPS, inference latency, and processing performance.
+- Visual enhancement using edge detection and image processing techniques.
+- Screenshot capture during runtime.
+- GPU acceleration with FP16 inference support.
+
+---
+
+## System Architecture
+
+The system follows a three-stage computer vision pipeline:
+
+### 1. Scene Segmentation
+DeepLabV3-MobileNetV3 analyzes the complete scene and provides pixel-level classification of road environments.
+
+### 2. Object Segmentation
+YOLOv8 segmentation identifies individual objects and detects pothole regions using trained segmentation models.
+
+### 3. Rendering and Visualization
+The detected information is processed using OpenCV to generate visual overlays, segmentation masks, and real-time performance displays.
+
+---
 
 ## Technologies Used
 
 - Python
-- Deep Learning
-- Computer Vision
+- PyTorch
+- TorchVision
+- DeepLabV3-MobileNetV3
+- Ultralytics YOLOv8
 - OpenCV
-- TensorFlow / PyTorch
-- Semantic Segmentation Models (U-Net / DeepLab)
-- Road Damage Datasets
+- NumPy
+- PIL
 
-## Project Workflow
+---
 
-1. Collect road images and video data.
-2. Preprocess the input data for model training.
-3. Train a deep learning-based segmentation model.
-4. Detect pothole regions from new images or videos.
-5. Generate segmentation masks to highlight damaged areas.
-6. Evaluate the model performance and accuracy.
+## Performance Optimizations
 
-## Features
+- Lightweight DeepLabV3-MobileNetV3 backbone for faster inference.
+- YOLOv8n-seg model for efficient object segmentation.
+- GPU acceleration with CUDA and FP16 support.
+- Optimized inference resolutions for real-time processing.
+- Asynchronous inference pipeline to avoid blocking.
+- Vectorized rendering for faster mask visualization.
+- Frame optimization techniques for improved performance.
 
-- Automated pothole detection using AI.
-- Accurate segmentation of pothole regions.
-- Visual representation of detected road damage.
-- Reduced time and effort required for road inspection.
-- Suitable for future real-time monitoring applications.
+---
 
-## Project Structure
-AI-Based-Pothole-Detection/
-│
-├── src/
-│ ├── train.py
-│ ├── predict.py
-│ └── model.py
-│
-├── notebooks/
-│ └── pothole_detection.ipynb
-│
-├── results/
-│
-├── requirements.txt
-├── README.md
-└── .gitignore
+## Pothole Detection Module
 
-## Future Enhancements
+The system can be extended for dedicated pothole detection by using a YOLOv8 segmentation model trained on pothole datasets.
 
-- Real-time pothole detection using vehicle-mounted cameras.
-- GPS integration for mapping pothole locations.
-- Pothole severity classification.
-- Development of a web or mobile application for road monitoring.
+The pothole detection module:
+- Identifies pothole locations in road scenes.
+- Generates segmentation masks around damaged areas.
+- Highlights potholes for better visualization.
+- Supports road safety analysis and maintenance planning.
 
-## Applications
+A custom pothole-trained YOLOv8 segmentation model can be integrated by replacing the default segmentation model with the trained pothole model.
 
-- Smart road maintenance systems
-- Transportation safety solutions
-- Infrastructure monitoring
-- Smart city development
+---
 
-## License
+## Installation and Usage
 
-This project is developed for educational and research purposes.
+Install the required dependencies:
+
+```bash
+pip install -r requirements.txt
